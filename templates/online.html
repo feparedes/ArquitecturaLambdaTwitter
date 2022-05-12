@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <title>Flask App </title>
+
+
+        <!-- Bootstraps Java Scipts Links -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    
+    
+        <!-- JQuery links  -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    
+        <!--High CHART LIVE  -->
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="http://code.highcharts.com/highcharts-more.js"></script>
+        <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+  </head>
+  <body>
+    <header></header>
+    <main>
+
+
+  <div id="container"></div>
+  <script type="text/javascript">
+    function generate_chart() {
+      var datos = $.get('/online_data');
+      var tm = datos.done(function (result){
+          result = result.slice(0,20)
+            Highcharts.chart('container', {
+                chart: {
+                    plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+                    type: 'pie',
+                    height: '40%'
+                },
+                title: {
+                    text: 'Top 20 popular hashtags'
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Number os hashtags',
+                    data: result,
+                    dataLabels: {
+                        enabled: true,
+                        color: '#37474f',
+                        colorByPoint: true,
+                        // align: 'left',
+                        // format: '{point.y:.1f}', // one decimal
+                        // y: 100, // 10 pixels down from the top
+                        style: {
+                            fontSize: '15px',
+                        //     fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                }]
+            });
+        });
+    }
+
+generate_chart()
+  </script>
+    </main>
+    <footer></footer>
+  </body>
+</html>
