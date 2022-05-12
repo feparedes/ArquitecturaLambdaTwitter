@@ -24,6 +24,6 @@ obteniendo los hashtags.
 * Service Layer: es la capa de servicio, en ella ejecutamos mediante Flask
 y Javascript distintas gráficas para visualizar los datos procesados.
 
-Los archivos que componen este proyecto son
-
-* main.py: clase principal donde se llama a las clases 
+Para ejecutar este código es necesario ejecutar un servidor de Zookeeper y
+ otro de Kafka. Además, se debe tener una conexión a la base de datos de
+MongoDB que vayamos a emplear.
